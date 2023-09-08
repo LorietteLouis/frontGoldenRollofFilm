@@ -1,0 +1,37 @@
+.btn {
+    background: $grey35;
+    display: inline-block;
+    color: $white;
+    padding: 7px 14px;
+    border-radius: 8px;
+    margin-top: 30px;
+    transition: all 0.2s ease-in-out;
+    border: 0;
+
+  }
+
+  .gradient-btn {
+    background: linear-gradient(120deg, $grey39);
+    color: $white;
+    padding: 10px 15px;
+    transition: all 0.2s;
+  
+    &:hover {
+      background: linear-gradient(120deg, $grey35, $white);
+    }
+  }
+
+  .delete-btn {
+    margin: 0;
+    height: 35px;
+    background-color: $grey35;
+    border: 1px solid $white;
+
+    &:hover {
+      background-color: $grey39;
+      svg {
+        transform: rotate(15deg);
+      }
+
+    }
+  }

@@ -1,0 +1,28 @@
+.creatingPage {
+    max-width: 20vw;
+    margin: auto;
+    padding: 3vh;
+    // border: 1px solid $whiteAlpha2;
+    border-radius: 20px;
+
+    .forma {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 30px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    
+        .email-input {
+          min-width: 250px;
+        }
+      }
+
+      textarea {
+        border-radius: 10px;
+        border: none;
+        width: 200px;
+        height: 80px;
+        padding: 15px;
+      }
+}

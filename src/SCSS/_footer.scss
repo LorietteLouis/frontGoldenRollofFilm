@@ -1,0 +1,27 @@
+.Footer-Site{
+   
+    align-items: center;
+    background-color: $grey35;
+
+    ul{
+        display: flex;
+        justify-content: center;
+        
+    }
+    li{
+        margin: 15px 0;
+        padding: 0 15px ;
+        cursor: pointer;
+        
+    }
+    a{
+        color: white;
+    }
+}
+
+.Footer-logo{
+    height: 10vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}

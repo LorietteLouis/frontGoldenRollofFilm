@@ -1,0 +1,24 @@
+.header-top{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(180deg,$grey39 0%,$grey39 99%, $white 100%);
+    ul{
+        display: flex;
+        justify-content: space-between;
+    }
+    li{
+        margin: 15px 0;
+        padding: 0 15px ;
+        cursor: pointer;
+        
+    }
+    a{
+        color: white;
+    }
+}
+
+.Header-logo{
+    height: 10vh;
+    border-radius: 50%;
+}

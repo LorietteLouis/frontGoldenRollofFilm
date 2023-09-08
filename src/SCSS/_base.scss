@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Russo One";
+  src: url(../font/RussoOne-Regular.ttf);
+}
+@font-face {
+  font-family: "Ysabeau Infant";
+  src: url(../font/YsabeauInfant-VariableFont_wght.ttf);
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    font-family: "Ysabeau Infant";
+  }
+  
+
+  $white: white;
+  $grey39: #393939;
+  $grey35: #353535;
+  $gold: gold;
+  $silver:silver;
+  $copper: #b36700;
+
+body{
+    background-color: $grey39;
+    color: white;
+  }
+
+h1,h2,h3{
+font-family: "Russo One";
+}
+
+h1{color:gold}
+h2{color:silver}
