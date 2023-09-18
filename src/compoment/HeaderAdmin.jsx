@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import logo from '../image/logo.png';
+import logo from '../logoAndIcons/logo.png'
 
 
 const HeaderAdmin = () => {
@@ -34,13 +34,13 @@ const HeaderAdmin = () => {
             <Link to="/admin/dashboard">Home</Link>
           </li>
           <li>
-            <Link to="/admin/films">All Films</Link>
+            <Link to="/admin/films" className="header-admin">All Films</Link>
           </li>
           <li>
-            <Link to="/admin/reviews">All Reviews</Link>
+            <Link to="/admin/reviews" className="header-admin">All Reviews</Link>
           </li>
           <li>
-            <Link to="/admin/users">All Users</Link>
+            <Link to="/admin/users" className="header-admin">All Users</Link>
           </li>
           <li>
             <Link to="/admin/films/create">Create</Link>

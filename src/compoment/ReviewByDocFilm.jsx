@@ -1,15 +1,19 @@
 
 import { useState,useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import IconByRating from "./IconByRating";
+
 
 
 const ReviewByDocFilm = () => {
+    const {id} = useParams();
     const [reviews, setReviews] = useState([]);
 
-    const navigate = useNavigate();
+    
+    
 
     const fetchReview = async () => {
-        const response = await fetch("http://localhost:3042/api/reviews",{
+        const response = await fetch(`http://localhost:3042/api/reviews/${id}`,{
             method: "GET"
         });
         const responseJs = await response.json();
@@ -21,16 +25,26 @@ const ReviewByDocFilm = () => {
     useEffect(() =>{fetchReview()},[])
 
         return(
-            <>
+            
+            <div className="title-critic">
             <h1>Liste des critiques</h1>
-            {reviews.map((review) =>(
-                <div key={review.id} className="reviews">       
-                    <p>{review.content}</p>
-                    <p>{review.rating}</p>
-                </div>
-            ))}
+            
+            {reviews && (
+                <div key={reviews.id} className="reviews">      
+                    <p>{reviews.content}</p>
+                    <div className="rating">
+                    <p>La Note : {reviews.rating}</p>
+                    
+                    </div>
 
-            </>
+                    
+                </div>
+                )}
+                <IconByRating/>
+            
+
+
+            </div>
         )
     }
 

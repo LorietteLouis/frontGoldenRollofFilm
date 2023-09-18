@@ -5,6 +5,7 @@ import HeaderPublic from "../../compoment/HeaderPublic";
 import Footer from "../../compoment/Footer";
 import { useParams } from "react-router-dom";
 import ReviewByDocFilm from "../../compoment/ReviewByDocFilm";
+import banner from '../../logoAndIcons/movie-theater-background-1920-x-1080-0rlqfkw46krlqijm.jpg'
 
 const DocFilmPage = () => {
     const {id} = useParams();
@@ -12,6 +13,7 @@ const DocFilmPage = () => {
     const [review, setReview] = useState([]);
 
     let isUserConnected = false;
+   
     
     const jwt = Cookies.get("jwt");
 
@@ -23,6 +25,7 @@ const DocFilmPage = () => {
             isUserConnected = true;
         }
     }
+    
 
     const fetchDocFilms = async () => {
         const response = await fetch(`http://localhost:3042/api/films/${id}`, {
@@ -47,7 +50,7 @@ const DocFilmPage = () => {
     }
     const jwt = Cookies.get("jwt")
 
-    const responseReview = await fetch(`http://localhost:3042/api/reviews/${id}`,{
+    const responseReview = await fetch(`http://localhost:3042/api/withReview`,{
         method:"POST",
         headers:{
             "Content-Type": "application/json",
@@ -66,31 +69,41 @@ useEffect(() => {fetchDocFilms()},[]);
 return(
     <>
         <HeaderPublic/>
-        <section className="review-section">
+        <img src={banner} className="banner" alt="banner cinema room"/>
+        <section className="docFilm-section">
         {docFilms && (
           <>
-            <h1>{docFilms.title_vf}</h1>
-            <h3>{docFilms.title_original}</h3>
-            <p>Année de sortie :{docFilms.years}</p>
-            <p>synopsis :{docFilms.synopsis}</p>
-            
+           {docFilms.picture && <img src={docFilms.picture} alt={docFilms.title_vf} className="poster"/>}
+           <div className="container-docFilm">
+                <h1>{docFilms.title_vf}</h1>
+                <h3>{docFilms.title_original}</h3>
+                <h3>{docFilms.genre}</h3>
+                <p><strong>Année de sortie :</strong>{docFilms.years}</p>
+                <p><strong>synopsis :</strong>{docFilms.synopsis}</p>
+            </div>
           </>
         )}
+        
+            </section>
         {}
+        <div review-critic>
         {isUserConnected && (
-        <form onSubmit={(event) => handleCreateReview(event, docFilms.id)}>
-          <label htmlFor="content">Votre review</label>
+        <form className="review" onSubmit={(event) => handleCreateReview(event, docFilms.id)}>
+          <label htmlFor="content"><h2>Zone de critique</h2></label>
           <textarea name="content" rows="15" cols="100"></textarea>
+          
+          <label htmlFor="rating"className="rating">Votre note </label>
+          <input type="number" className="rating" name="rating" min="0" max="100" />
 
-          <label htmlFor="rating">Votre note</label>
-          <input type="number" name="rating" min="0" max="100" />
-
-          <button type="submit">Donner une critique</button>
+          <button type="submit"className="btn rating">Envoyer</button>
+        
+          <ReviewByDocFilm/>
+            
+           
         </form>
         )}
+        </div>
         
-        <ReviewByDocFilm/>
-      </section>
         
         <Footer/>
     </>

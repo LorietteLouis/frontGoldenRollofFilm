@@ -1,4 +1,6 @@
-import logo from '../image/logo.png'
+import { Link } from 'react-router-dom'
+import logo from '../logoAndIcons/logo.png'
+
 
 const Footer = () => {
     return (
@@ -7,7 +9,10 @@ const Footer = () => {
             <nav>
                 <ul>
                     <li>
-                        <p>© Copyright SioulCompany</p>
+                    <Link to= {`/contact`}>Contact</Link>
+                    </li>
+                    <li>
+                        <p>© Golden Roll of Film</p>
                     </li>
                 </ul>
             </nav>

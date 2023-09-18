@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom"
+import HeaderPublic from "../../compoment/HeaderPublic";
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -9,12 +10,13 @@ const SignupPage = () => {
         const username = e.target.username.value
         const password = e.target.password.value
         const email = e.target.email.value
+        const RoleId = e.target.RoleId.value
 
         const userData = {
             username: username,
             password: password,
             email: email,
-            roleId: 1,
+            RoleId: RoleId,
         };
         const token = Cookies.get("jwt")
 
@@ -32,6 +34,7 @@ const SignupPage = () => {
     };
         return(
             <>
+            <HeaderPublic/>
             <form onSubmit={handleCreateUser} className="creatingPage">
             <div className="signup forma">
                 <label htmlFor="username">Username</label>
@@ -45,6 +48,12 @@ const SignupPage = () => {
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" />
             </div>
+            <div className="signup forma">
+                <label htmlFor="RoleId">Role</label>
+                <input type="number" name="RoleId" min="1" max="1" />
+            </div>
+            
+            
 
             <input type="submit" />
             </form>

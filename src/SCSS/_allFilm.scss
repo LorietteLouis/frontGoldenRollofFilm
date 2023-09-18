@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px 50px;
+    img{
+    width: 200px;
+    }
+}
+.resume-film{
+    margin: 0 50px;
+}
+.film{
+    .poster{
+        width: 200px;
+    }
+}

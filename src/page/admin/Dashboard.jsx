@@ -24,12 +24,20 @@ const Dashboard = () =>{
     return(
         <>
         <HeaderAdmin/>
-        <div className="home">
+        <div className="dashboard">
           <h1>Home Administration</h1>
           <p>hello and welcome to this center!</p>
           <Link to="../admin/reviews"><button
             className="btn" 
-            type="submit">Commentaire Publique
+            type="submit">Critique Publique
+           </button></Link>
+           <Link to="../admin/films"><button
+            className="btn" 
+            type="submit">L'ensemble des films
+           </button></Link>
+           <Link to="../admin/users"><button
+            className="btn" 
+            type="submit">Les utilisateurs enregistré
            </button></Link>
         </div>
         <Footer/>

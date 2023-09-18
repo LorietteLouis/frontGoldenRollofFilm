@@ -8,7 +8,7 @@
 }
 * {
     margin: 0;
-    padding: 0;
+    padding: 0 auto;
     text-decoration: none;
     list-style-type: none;
     font-family: "Ysabeau Infant";
@@ -33,3 +33,7 @@ font-family: "Russo One";
 
 h1{color:gold}
 h2{color:silver}
+
+.icon{
+  height: 32px;
+}

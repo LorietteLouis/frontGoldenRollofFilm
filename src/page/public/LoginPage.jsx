@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
+import HeaderPublic from "../../compoment/HeaderPublic";
 
 const LoginPage = () => {
     const navigate = useNavigate()
@@ -44,6 +45,8 @@ const LoginPage = () => {
   
 
   return (
+    <>
+    <HeaderPublic/>
     <form onSubmit={handleLoginSubmit}className="login">
       <div className="login forma">
         <label htmlFor="username">Username</label>
@@ -55,8 +58,9 @@ const LoginPage = () => {
         <input type="password" name="password" />
       </div>
 
-      <input type="submit" />
+      <input type="submit" className="login btn gradient-btn"/>
     </form>
+    </>
   );
 };
 

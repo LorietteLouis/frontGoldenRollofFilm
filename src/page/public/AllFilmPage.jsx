@@ -36,13 +36,15 @@ return(
     <>
     <HeaderPublic/>
     <div>
-        <h1>La Liste des films</h1>
+        <h1 className="bigTitle">La Liste des films</h1>
         {films.map((film) =>(
-            <div key = {film.id}>
+            <div key = {film.id} className="container">
                 {film.picture && <img src={film.picture} alt={film.title_vf} />}
-                <h3>{film.title_vf}</h3>
-
-                <Link className="btn btn-gradient" to= {`/films/${film.id}`}>Regarder</Link>
+                <div className="resume-film">
+                    <h3>{film.title_vf}</h3>
+                    <p><strong>Genre : </strong>{film.genre}</p>
+                    <Link className="btn btn-gradient" to= {`/films/${film.id}`}>Regarder</Link>
+                </div>
             </div>
         ))}
     </div>

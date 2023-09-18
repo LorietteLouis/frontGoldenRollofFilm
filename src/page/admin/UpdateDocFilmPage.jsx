@@ -25,6 +25,7 @@ const UpdateDocFilmPage = () => {
         const years = e.target.years.value
         const synopsis = e.target.synopsis.value
         const countries = e.target.countries.value
+        const genre = e.target.genre.value
 
         const filmData = {
             title_vf : title_vf,
@@ -32,6 +33,7 @@ const UpdateDocFilmPage = () => {
             years : years ? parseInt(years) : null,
             synopsis: synopsis,
             countries : countries,
+            genre : genre,
         };
 
         const formData = new FormData();
@@ -44,10 +46,10 @@ const UpdateDocFilmPage = () => {
         const requestOptions = {
             method: "PUT",
             headers: {
-              "Content-Type": "application/json",
+            //   "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(filmData),
+            body: formData,
           };
 
         const responseUpdate = await fetch (`http://localhost:3042/api/films/${id}`,requestOptions)
@@ -77,6 +79,9 @@ const UpdateDocFilmPage = () => {
             if (user.data.role === 1) {
                 navigate("/")
             }
+            if (user.data.role === 2){
+                navigate("/admin/dashboard")
+            }
         fetchFilm()},[])
 
             return (
@@ -87,7 +92,7 @@ const UpdateDocFilmPage = () => {
                     Le film à bien était modifié, redirection vers le All Films dans : {indexTime} secondes.
                     </h3>
                 )}
-                <form onSubmit={handleUpdateFilm} className="updatePage">
+                <form onSubmit={handleUpdateFilm} className="updatingPage">
             <div className="update forma">
                         <label htmlFor="title_vf">Titre en français</label>
                         <input type="text" name="title_vf" defaultValue={updateFilm && updateFilm.title_vf}/>
@@ -102,11 +107,15 @@ const UpdateDocFilmPage = () => {
                     </div>
                     <div className="update forma">
                         <label htmlFor="synopsis">Synopsis</label>
-                        <textarea name="synopsis" rows="4" cols="50"defaultValue={updateFilm && updateFilm.synopsis}></textarea>
+                        <textarea name="synopsis" rows="4" cols="50" defaultValue={updateFilm && updateFilm.synopsis}></textarea>
                     </div>
                     <div className="update forma">
                         <label htmlFor="countries">Pays</label>
                         <input type="text" name="countries" defaultValue={updateFilm && updateFilm.countries}/>
+                    </div>
+                    <div className="update forma">
+                        <label htmlFor="genre">Genre</label>
+                        <input type="text" name="genre" defaultValue={updateFilm && updateFilm.genre}/>
                     </div>
                     <div className="update forma">
                         <label htmlFor="picture">Poster</label>

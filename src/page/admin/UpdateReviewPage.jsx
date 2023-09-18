@@ -6,41 +6,41 @@ import Cookies from "js-cookie";
 import Footer from "../../compoment/Footer";
 
 
-const UpdateUserPage = () => {
+const UpdateReviewPage = () => {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    const [user, setUser]=useState(null);
+    const [review, setReview]=useState(null);
 
-    const fetchUser = async () => {
-        const responseUser = await fetch (`http://localhost:3042/api/users/${id}`)
-        const responseUserJs = await responseUser.json();
+    const fetchReview = async () => {
+        const responseReview = await fetch (`http://localhost:3042/api/reviews/${id}`)
+        const responseReviewJs = await responseReview.json();
 
-        setUser(responseUserJs.data)
+        setReview(responseReviewJs.data)
     }
 
-    const handleUpdateUser = async (e) => {
-        const username = e.target.username.value
-        const email = e.target.email.value
+    const handleUpdateReview = async (e) => {
+        const content = e.target.content.value
+        const rating = e.target.rating.value
 
-        const userData = {
-            username : username,
-            email: email,
+        const reviewData = {
+            content : content,
+            rating : rating,
         };
 
         const token = Cookies.get("jwt")
 
-        const responseUpdate = await fetch (`http://localhost:3042/api/users/${id}`,{
+        const responseUpdate = await fetch (`http://localhost:3042/api/reviews/${id}`,{
             method: "PUT",
             headers: {
                 "Content-Type":"application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(userData),
+            body: JSON.stringify(reviewData),
         });
 
         if (responseUpdate.status === 200) {
-            navigate("/admin/users");
+            navigate("/admin/reviews");
         }
     };
 
@@ -57,21 +57,21 @@ const UpdateUserPage = () => {
             navigate("/")
         }
        
-        fetchUser();
+        fetchReview();
     },[]);
 
     return(
     <div>
         <>
         <HeaderAdmin/>
-        <form onSubmit={handleUpdateUser} className="updatingPage">
+        <form onSubmit={handleUpdateReview} className="updatingPage">
             <div className="update forma">
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" defaultValue={user && user.username}/>
+                <label htmlFor="content">Content</label>
+                <textarea type="content" name="content" rows="10" cols="150" defaultValue={review && review.content}/>
             </div>
             <div className="update forma">
-                <label htmlFor="email">E-mail</label>
-                <input type="email" name="email" defaultValue={user && user.email}/>
+                <label htmlFor="rating">Rating</label>
+                <input type="number" name="rating" min="0" max="100" defaultValue={review && review.rating}/>
             </div>
             <input type="submit" className="btn gradient-btn" />
         </form>
@@ -80,4 +80,4 @@ const UpdateUserPage = () => {
     </div>
     )
 }
-export default UpdateUserPage
+export default UpdateReviewPage

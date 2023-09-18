@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderAdmin from "../../compoment/HeaderAdmin";
 import Footer from "../../compoment/Footer";
+import jwtDecode from "jwt-decode";
 
 const CreateFilmPage = () => {
     const navigate = useNavigate();
@@ -15,6 +15,7 @@ const CreateFilmPage = () => {
         const years = e.target.years.value
         const synopsis = e.target.synopsis.value
         const countries = e.target.countries.value
+        const genre = e.target.genre.value
 
         const filmData = {
             title_vf: title_vf,
@@ -22,6 +23,7 @@ const CreateFilmPage = () => {
             years: years ? parseInt(years):null,
             synopsis : synopsis,
             countries : countries,
+            genre : genre,
         };
 
         const formData = new FormData();
@@ -30,31 +32,41 @@ const CreateFilmPage = () => {
         formData.append("data", JSON.stringify(filmData));
 
 
-        const token = Cookies.get("jwt")
 
+        const token = Cookies.get("jwt")
+        
         const responseCreate = await fetch (`http://localhost:3042/api/films/withImg`,{
             method: "POST",
-            body: JSON.stringify(filmData),
+            body: formData,
             headers: {
-                "Content-Type": "application/json",
+                // "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             },
         });
 
         const responseCreateJs = await responseCreate.json();
         navigate("/admin/films")
-    };
-    useEffect(() =>{
-        const jwt = Cookies.get("jwt")
-        if (!jwt){
-            navigate("/login");
-        }
-        const user = jwtDecode(jwt)
 
-        if (user.data.role === 1){
-            navigate("/")
-        }
-    }, [])
+        console.log(responseCreateJs);
+    };
+        useEffect(() => {
+            const jwt = Cookies.get("jwt")
+      
+            if (!jwt){
+                navigate("/login")
+            }
+      
+            const user = jwtDecode(jwt);
+            
+            if (user.data.role === 1) {
+                navigate("/")
+            }
+            if (user.data.role === 2) {
+                navigate("/admin/dashboard")
+            }
+      }, []);
+    
+    
     
         return (
             <>
@@ -74,11 +86,15 @@ const CreateFilmPage = () => {
                     </div>
                     <div className="create forma">
                         <label htmlFor="synopsis">Synopsis</label>
-                        <textarea name="synopsis" rows="4" cols="50"></textarea>
+                        <textarea name="synopsis" rows="5" cols="100"></textarea>
                     </div>
                     <div className="create forma">
                         <label htmlFor="countries">Pays</label>
                         <input type="text" name="countries"/>
+                    </div>
+                    <div className="create forma">
+                        <label htmlFor="genre">Genre</label>
+                        <input type="text" name="genre"/>
                     </div>
                     <div className="create forma">
                         <label htmlFor="image">Poster</label>

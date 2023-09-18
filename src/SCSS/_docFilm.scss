@@ -1,0 +1,38 @@
+.banner{
+    width: 100%;
+    z-index: -1;
+   
+    justify-content: center;
+    background-color: black;
+    position: absolute;
+    
+    margin: 0;
+    padding: 0 auto;
+}
+.docFilm-section{
+    width: 1000px;
+    padding: 50px 10px;
+    display: flex;
+    justify-content: space-between;
+    .poster{
+        width: 200px;
+        height: 300px;
+    }
+
+}
+
+.review{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    .rating{
+        width: 80px
+    }
+
+}
+.title-critic{
+    width: 600px;
+    margin-top: 350px
+}
+
+

@@ -13,7 +13,10 @@ import DocFilmPage from './page/public/DocFilmPage';
 import SignupPage from './page/public/Signin';
 import UpdateUserPage from './page/admin/UpdateUserPage';
 import AllUserPage from './page/admin/AllUserPage';
-import AllFilmPageAdmin from './page/admin/AllFilmPage';
+import AllFilmPageAdmin from './page/admin/AllFilmPageAdmin';
+import UpdateReviewPage from './page/admin/UpdateReviewPage';
+
+import Contact from './allUser/Contact';
 
 function App() {
   return (
@@ -27,6 +30,7 @@ function App() {
         <Route path='/admin/reviews' element={<ReviewAdminPage/>}/>
         <Route path='/admin/users/:id/update' element={<UpdateUserPage/>}/>
         <Route path='/admin/users' element={<AllUserPage/>}/>
+        <Route path='/admin/reviews/:id/update' element={<UpdateReviewPage/>}/>
 
 
         <Route path="/" element={<HomePage />} />
@@ -34,6 +38,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path='/films/:id'element={<DocFilmPage/>}/>
+
+        <Route path="/contact" element={<Contact/>}/>
       </Routes>
       </BrowserRouter>
     </div>

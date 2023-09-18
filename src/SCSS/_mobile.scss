@@ -1,0 +1,33 @@
+@media screen and (max-width: 800px) {
+
+*{
+    width: auto;
+}
+.poster{
+    width: 250px;
+    height: 350px;
+}
+.review{
+    
+    padding: 50px 0 5px 10px;
+}
+.container-docFilm{
+    padding: 80px 0;
+}
+.header-top{
+    h1{
+        display: none;
+    }
+}
+.header-admin{
+    display: none;
+}
+.dashboard{
+    padding: 0 auto;
+    margin: 0 auto;
+}
+.docFilm-section{
+    flex-direction: column;
+    width: 550px;
+}
+}
